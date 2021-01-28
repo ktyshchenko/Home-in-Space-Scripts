@@ -1,6 +1,5 @@
 # Home in Space Scripts
 _Author: Kate Tyshchenko_  
-
 _Personal website: https://ktyshchenko.github.io/_
 
 ### Purpose
