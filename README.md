@@ -10,4 +10,4 @@ If you would like to see full repo, please contact me (it is currently a private
 - Sci-fi interactive VR app of a habitat on a human-colonized planet in 2050's
 - Currently in development for Android devices
 - In the future, the idea is to change it to an "escape room" app
-- More info [here](https://ktyshchenko.github.io/homeinspace.html)
+- More info [here](https://sites.google.com/view/homeinspace-vrapp/home)
