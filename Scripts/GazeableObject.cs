@@ -31,9 +31,9 @@ public class GazeableObject : MonoBehaviour
         //Debug.Log("Gaze entered on " + gameObject.name);
 
         if (isTransformable &&
-            Player.instance.activeMode == InputMode.TRANSLATE ||
+            (Player.instance.activeMode == InputMode.TRANSLATE ||
             Player.instance.activeMode == InputMode.ROTATE ||
-            Player.instance.activeMode == InputMode.SCALE)
+            Player.instance.activeMode == InputMode.SCALE))
         {
             GetComponentInChildren<cakeslice.Outline>().enabled = true;
         }
