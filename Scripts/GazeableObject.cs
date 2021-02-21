@@ -175,7 +175,7 @@ public class GazeableObject : MonoBehaviour
                 deltaRotation.x = 360.0f + deltaRotation.x;
             }
 
-            scaleFactor = Mathf.Max(0.1f, 1.0f - (Mathf.Abs(deltaRotation.x) * (1.0f / scaleSpeed)) / 180.0f); // Need to have the smalles number can go to - using .Max
+            scaleFactor = Mathf.Max(0.1f, 1.0f - (Mathf.Abs(deltaRotation.x) * scaleSpeed)); // Need to have the smalles number can go to - using .Max
         }
 
         transform.localScale = scaleFactor * initialObjectScale;
