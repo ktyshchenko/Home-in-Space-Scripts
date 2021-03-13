@@ -5,7 +5,7 @@ using UnityEngine;
 public class Door : GazeableObject
 {
     private Animator anim;
-    public bool isOpen = false;
+    public static bool isOpen = false;
 
     // Start is called before the first frame update
     private void Start()
