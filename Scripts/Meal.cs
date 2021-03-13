@@ -12,10 +12,13 @@ public class Meal : GazeableButton
     {
         base.OnPress(hitInformation);
 
-        // Player mode to place the food on the table
-        Player.instance.activeMode = InputMode.MEAL;
+        if (parentPanel.currentActiveButton != null)
+        {
+            // Player mode to place the food on the table
+            Player.instance.activeMode = InputMode.MEAL;
 
-        // Set the prefab to the selected food
-        Player.instance.activeMealPrefab = prefab;
+            // Set the prefab to the selected food
+            Player.instance.activeMealPrefab = prefab;
+        }
     }
 }
