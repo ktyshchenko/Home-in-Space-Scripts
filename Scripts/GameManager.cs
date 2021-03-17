@@ -11,19 +11,21 @@ public class GameManager : MonoBehaviour
     public static bool isFinished = false;
 
     private GameObject canvasInstr;
-    private GameObject controller;
+    public GameObject[] controllerObjs;
 
     public TMP_Text timeText;
+    private AudioSource ac;
 
     public static float duration = 5.0f;
     private float timeLeft;
     private static float offset = 1.0f; // to make it start at X sec exactly
+    private bool isPlayed = false;
 
     // Start is called before the first frame update
     void Start()
     {
         canvasInstr = GameObject.FindGameObjectWithTag("Instructions");
-        controller = GameObject.FindGameObjectWithTag("Finish");
+        ac = GetComponent<AudioSource>();
 
         timeLeft = duration + offset;
 
@@ -39,6 +41,8 @@ public class GameManager : MonoBehaviour
         ActivateInstructions();
 
         ActivateController();
+
+        FinishGame();
     }
 
     public void StartGame()
@@ -70,7 +74,16 @@ public class GameManager : MonoBehaviour
     {
         if (isControllerFound)
         {
-            controller.SetActive(true);
+            if (!isPlayed)
+            {
+                ac.PlayOneShot(ac.clip);
+                isPlayed = true;
+            }
+
+            foreach (GameObject obj in controllerObjs)
+            {
+                obj.SetActive(true);
+            }
         }
     }
 
