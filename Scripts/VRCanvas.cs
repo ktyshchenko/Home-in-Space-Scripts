@@ -22,6 +22,7 @@ public class VRCanvas : MonoBehaviour
         if (currentActiveButton != null)
         {
             currentActiveButton.SetButtonColor(unselectedColor);
+            Player.instance.activeMode = InputMode.NONE;
         }
 
         if (activeButton != null && currentActiveButton != activeButton)
