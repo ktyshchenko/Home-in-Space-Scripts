@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     public TMP_Text timeText;
 
-    public static float duration = 60.0f;
+    public static float duration = 5.0f;
     private float timeLeft;
     private static float offset = 1.0f; // to make it start at X sec exactly
 
@@ -36,6 +36,8 @@ public class GameManager : MonoBehaviour
         timeLeft -= Time.deltaTime; // count time left
         DisplayTime();
 
+        ActivateInstructions();
+
         ActivateController();
     }
 
@@ -52,6 +54,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void ActivateInstructions()
+    {
+        if (Player.instance.activeMode == InputMode.INSTR)
+        {
+            canvasInstr.SetActive(true);
+        }
+        else if (isStarted)
+        {
+            canvasInstr.SetActive(false);
+        }
+    }
+
     public void ActivateController()
     {
         if (isControllerFound)
@@ -62,12 +76,12 @@ public class GameManager : MonoBehaviour
 
     private void DisplayTime()
     {
-        if (timeLeft < 0)
-        {
-            timeLeft = 0;
-        }
-
         timeText.GetComponent<TextMeshProUGUI>().text = "Game will start in " + (int)timeLeft + " sec";
+
+        if (timeLeft <= -1)
+        {
+            timeText.GetComponent<TextMeshProUGUI>().text = "Game Started! Press Instructions button to exit";
+        }
     }
 
     public void FinishGame()
