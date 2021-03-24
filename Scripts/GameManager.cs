@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public static bool isStarted = false;
     public static bool solvedFirst = false;
     public static bool solvedSecond = false;
-    public static bool isControllerFound = false; // if third puzzle (math riddle) is solved
+    public static bool solvedThird = false; // if third puzzle (math riddle) is solved, controller is found
     public static bool isFinished = false;
 
     public GameObject canvasInstr;
@@ -121,7 +121,7 @@ public class GameManager : MonoBehaviour
 
     public void ActivateController()
     {
-        if (isControllerFound)
+        if (solvedThird)
         {
             PlayAudio();
 
@@ -153,7 +153,7 @@ public class GameManager : MonoBehaviour
 
     public void FinishGame()
     {
-        if (Door.isOpen && isControllerFound)
+        if (Door.isOpen && solvedThird)
         {
             isFinished = true;
         }
