@@ -13,6 +13,7 @@ public class Puzzle3 : GazeableButton
         {
             this.SetButtonColor(Color.green);
             GameManager.isControllerFound = true;
+            GameManager.isPlayed = false;
         }
         else
         {
