@@ -12,8 +12,9 @@ public class GameManager : MonoBehaviour
     public static bool isControllerFound = false; // if third puzzle (math riddle) is solved
     public static bool isFinished = false;
 
-    private GameObject canvasInstr;
-    private GameObject canvasPuzzle3;
+    public GameObject canvasInstr;
+    public GameObject canvasPuzzle2;
+    public GameObject canvasPuzzle3;
     public GameObject[] controllerObjs;
 
     public TMP_Text timeText;
@@ -22,13 +23,11 @@ public class GameManager : MonoBehaviour
     public static float duration = 5.0f;
     private float timeLeft;
     private static float offset = 1.0f; // to make it start at X sec exactly
-    private bool isPlayed = false;
+    public static bool isPlayed = true;
 
     // Start is called before the first frame update
     void Start()
     {
-        canvasInstr = GameObject.FindGameObjectWithTag("Instructions");
-        canvasPuzzle3 = GameObject.FindGameObjectWithTag("Puzzle3");
         ac = GetComponent<AudioSource>();
 
         timeLeft = duration + offset;
@@ -85,14 +84,38 @@ public class GameManager : MonoBehaviour
 
     private void ActivatePuzzle2()
     {
-        // TBC
+        if (solvedFirst && !solvedSecond)
+        {
+            PlayAudio();
+
+            canvasPuzzle2.SetActive(true);
+        }
+        else
+        {
+            canvasPuzzle2.SetActive(false);
+        }
+
+        if (Puzzle2.tableCount == Puzzle2.goal)
+        {
+            solvedSecond = true;
+        }
+        else
+        {
+            solvedSecond = false;
+        }
     }
 
     private void ActivatePuzzle3()
     {
+        PlayAudio();
+
         if (solvedSecond)
         {
             canvasPuzzle3.SetActive(true);
+        }
+        else
+        {
+            canvasPuzzle3.SetActive(false);
         }
     }
 
@@ -100,16 +123,21 @@ public class GameManager : MonoBehaviour
     {
         if (isControllerFound)
         {
-            if (!isPlayed)
-            {
-                ac.PlayOneShot(ac.clip);
-                isPlayed = true;
-            }
+            PlayAudio();
 
             foreach (GameObject obj in controllerObjs)
             {
                 obj.SetActive(true);
             }
+        }
+    }
+
+    private void PlayAudio()
+    {
+        if (!isPlayed)
+        {
+            ac.PlayOneShot(ac.clip);
+            isPlayed = true;
         }
     }
 
