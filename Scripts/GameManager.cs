@@ -7,10 +7,13 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public static bool isStarted = false;
-    public static bool isControllerFound = false;
+    public static bool solvedFirst = false;
+    public static bool solvedSecond = false;
+    public static bool isControllerFound = false; // if third puzzle (math riddle) is solved
     public static bool isFinished = false;
 
     private GameObject canvasInstr;
+    private GameObject canvasPuzzle3;
     public GameObject[] controllerObjs;
 
     public TMP_Text timeText;
@@ -25,6 +28,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         canvasInstr = GameObject.FindGameObjectWithTag("Instructions");
+        canvasPuzzle3 = GameObject.FindGameObjectWithTag("Puzzle3");
         ac = GetComponent<AudioSource>();
 
         timeLeft = duration + offset;
@@ -39,6 +43,10 @@ public class GameManager : MonoBehaviour
         DisplayTime();
 
         ActivateInstructions();
+
+        ActivatePuzzle1();
+        ActivatePuzzle2();
+        ActivatePuzzle3();
 
         ActivateController();
 
@@ -67,6 +75,24 @@ public class GameManager : MonoBehaviour
         else if (isStarted)
         {
             canvasInstr.SetActive(false);
+        }
+    }
+
+    private void ActivatePuzzle1()
+    {
+        // TBC
+    }
+
+    private void ActivatePuzzle2()
+    {
+        // TBC
+    }
+
+    private void ActivatePuzzle3()
+    {
+        if (solvedSecond)
+        {
+            canvasPuzzle3.SetActive(true);
         }
     }
 
